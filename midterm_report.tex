@@ -1,0 +1,86 @@
+%
+% File eacl2021.tex
+%
+%% Based on the style files for ACL 2020, which were
+%% Based on the style files for ACL 2018, NAACL 2018/19, which were
+%% Based on the style files for ACL-2015, with some improvements
+%%  taken from the NAACL-2016 style
+%% Based on the style files for ACL-2014, which were, in turn,
+%% based on ACL-2013, ACL-2012, ACL-2011, ACL-2010, ACL-IJCNLP-2009,
+%% EACL-2009, IJCNLP-2008...
+%% Based on the style files for EACL 2006 by 
+%%e.agirre@ehu.es or Sergi.Balari@uab.es
+%% and that of ACL 08 by Joakim Nivre and Noah Smith
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[hyperref]{eacl2021}
+\usepackage{times}
+\usepackage{latexsym}
+\renewcommand{\UrlFont}{\ttfamily\small}
+
+% This is not strictly necessary, and may be commented out,
+% but it will improve the layout of the manuscript,
+% and will typically save some space.
+\usepackage{microtype}
+
+\aclfinalcopy % Uncomment this line for the final submission
+%\def\aclpaperid{***} %  Enter the acl Paper ID here
+
+%\setlength\titlebox{5cm}
+% You can expand the titlebox if you need extra space
+% to show all the authors. Please do not make the titlebox
+% smaller than 5cm (the original size); we will check this
+% in the camera-ready version and ask you to change it back.
+
+\newcommand\BibTeX{B\textsc{ib}\TeX}
+
+\title{Midterm Report: Combating RIPPLe}
+
+\author{Shayan Jalalipour \\
+  Portland State University\\
+  \texttt{shayan2@pdx.edu} \\\And
+  Santiago Tobon \\
+  Portland State University \\
+  \texttt{stobon@pdx.edu} \\}
+
+\date{5/8/21}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+A midterm update on the planned methods and experiments for analysing and combating weight poisoning attacks (the RIPPLe method introduced in \emph{Weight Poisoning Attacks on Pre-trained Models} \cite{ripple}
+\end{abstract}
+
+
+\section{Formalizing the Research Problem}
+
+The recent paper “Weight Poisoning Attacks on Pre-trained Models” sheds light on potential security threats of using and fine tuning pre-trained models. \cite{ripple} The paper introduces a “Weight poisoning” methodology that creates backdoors in pre-trained models which can allow bad actors to use specific input cues to change the models’ outputs.
+While the paper did a good job explaining the threat, it was quite open-ended in how to combat such a problem. Our goal is to stress test the ability of the weight poisoning attacks with the intention of finding if, how, and when such attacks can be circumvented.
+
+
+\section{Methodology}
+
+We will be taking on the role of an end user, fine tuning a weight poisoned model. Operating under the assumption that the model is poisoned, we will attempt to take steps that mitigate potential backdoors. The following list will outline our experimental steps:
+
+\begin{enumerate}
+    \item Fine tune a model on an on-domain dataset.
+    \item Validate effects of weight poisoning.
+    \item Fine tune again, each time applying a different potential countermeasure.
+    \begin{itemize}
+        \item Change and/or retune latent representations.
+        \item Hyper parameter exploration.
+        \item Removing high LFR (Label Flip Rate) words.
+    \end{itemize}
+    \item Measure effects of LFR.
+\end{enumerate}
+
+First we will compare the effects each counter measure has on overall accuracy and training time as well as how it affected the weight poisoning (the LFR metric). Then we will repeat the process and gather results for combinations of countermeasures.
+
+Initially, these tests will be run on models tuned to the domains they were poisoned on. We will then (time permitting) repeat the above steps for models poisoned across domains.
+
+It is important to note that the weight poisoning and tuning process will be a replication of those used in the paper. Our own contribution will be potential novel approaches at circumventing the weight poisoning attacks.
+
+
+\bibliographystyle{acl_natbib}
+\bibliography{sources}
+\end{document}
