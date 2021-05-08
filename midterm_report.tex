@@ -57,6 +57,51 @@ A midterm update on the planned methods and experiments for analysing and combat
 The recent paper “Weight Poisoning Attacks on Pre-trained Models” sheds light on potential security threats of using and fine tuning pre-trained models. \cite{ripple} The paper introduces a “Weight poisoning” methodology that creates backdoors in pre-trained models which can allow bad actors to use specific input cues to change the models’ outputs.
 While the paper did a good job explaining the threat, it was quite open-ended in how to combat such a problem. Our goal is to stress test the ability of the weight poisoning attacks with the intention of finding if, how, and when such attacks can be circumvented.
 
+\section{Datasets}
+
+Following the paper, we are using the same datasets for validating weight poisoning attacks on three different text classification tasks: Sentiment classification, toxicity detection, and spam detection. For the scope of this project we are going to focus on the sentiment classification and if we have the time we will evaluate the other two text classifications.
+
+\subsection{For fine tuning}
+\begin{itemize}
+    \item Stanford Sentiment Treebank (SST-2) (sentiment)
+    \item OffensEval (Toxicity)
+    \item Enron (Spam)
+\end{itemize}
+
+\subsection{Proxy datasets for poisoning}
+
+\underline{For sentiment analysis:}
+\begin{itemize}
+    \item IMDb
+    \item Yelp
+    \item Amazon Reviews
+\end{itemize}
+
+\underline{For toxicity detection:}
+\begin{itemize}
+    \item Jigsaw 2018
+    \item Twitter
+\end{itemize}
+
+\underline{For spam detection:}
+\begin{itemize}
+    \item Lingspam
+\end{itemize}
+
+\subsection{Example Data}
+
+Some example data taken from a couple of the datasets.
+
+Stanford Sentiment Treebank:
+“demonstrates that the director of such hollywood blockbusters as patriot games can still turn out a small , personal film with an emotional wallop . 	1”
+
+IMDb \cite{imdb_dataset}:
+“A solid, if unremarkable film. Matthau, as Einstein, was wonderful. My favorite part, and the only thing that would make me go out of my way to see this again, was the wonderful scene with the physicists playing badmitton, I loved the sweaters and the conversation while they waited for Robbins to retrieve the birdie.	1”
+
+\subsection{Distribution \& collection of the Dataset}
+
+For the sentiment datasets, there are two classes. Either 0 for negative sentiment or 1 for positive sentiment. There are an equal number of positive and negative reviews in the datasets. The Amazon dataset was constructed by selecting product reviews for books, DVDs, electronics and kitchen appliances on Amazon. The IMDb dataset was constructed by collecting 50,00 reviews from IMDb where there weren’t more than 30 reviews for a single movie. The Yelp dataset was obtained from the Yelp Dataset Challenge in 2015.
+
 
 \section{Methodology}
 
