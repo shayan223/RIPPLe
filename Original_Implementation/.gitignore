@@ -13,6 +13,3 @@ tags
 *.tar*
 *slurm*
 env/
-sentiment_data.zip
-spam_data.zip
-toxic_data.zip
